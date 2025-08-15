@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="favicon.webp" type="image/x-icon">
+  <title>Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="color-scheme" content="light dark" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+  <style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-900 dark:to-slate-800 text-slate-900 dark:text-slate-100 flex items-center justify-center p-4">
+  <div class="w-full max-w-md">
+    <!-- Header -->
+    <div class="mb-4 flex items-center justify-between">
+      <h1 class="text-2xl font-bold tracking-tight">Calculator</h1>
+      <button id="themeToggle" class="rounded-2xl px-3 py-2 text-sm shadow-sm border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        Toggle Theme
+      </button>
+    </div>
+
+    <!-- Calculator Card -->
+    <div class="rounded-3xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden bg-white/70 dark:bg-slate-900/60 backdrop-blur">
+      <!-- Display -->
+      <div class="p-4">
+        <div id="historyLine" class="text-right text-sm text-slate-500 dark:text-slate-400 h-6 overflow-hidden"></div>
+        <div class="mt-1 text-right">
+          <input id="display" class="w-full bg-transparent text-right text-4xl font-semibold tracking-wide outline-none caret-indigo-500" placeholder="0" readonly />
+        </div>
+      </div>
+
+      <!-- Buttons Grid -->
+      <div class="grid grid-cols-4 gap-2 p-4 bg-slate-50/70 dark:bg-slate-950/30">
+        <!-- Row 1 -->
+        <button data-action="clear" class="key key-ac">AC</button>
+        <button data-action="delete" class="key">DEL</button>
+        <button data-value="%" class="key">%</button>
+        <button data-value="/" class="key op">÷</button>
+
+        <!-- Row 2 -->
+        <button data-value="7" class="key">7</button>
+        <button data-value="8" class="key">8</button>
+        <button data-value="9" class="key">9</button>
+        <button data-value="*" class="key op">×</button>
+
+        <!-- Row 3 -->
+        <button data-value="4" class="key">4</button>
+        <button data-value="5" class="key">5</button>
+        <button data-value="6" class="key">6</button>
+        <button data-value="-" class="key op">−</button>
+
+        <!-- Row 4 -->
+        <button data-value="1" class="key">1</button>
+        <button data-value="2" class="key">2</button>
+        <button data-value="3" class="key">3</button>
+        <button data-value="+" class="key op">+</button>
+
+        <!-- Row 5 -->
+        <button data-value="(" class="key">(</button>
+        <button data-value=")" class="key">)</button>
+        <button data-value="0" class="key">0</button>
+        <button data-value="." class="key">.</button>
+
+        <!-- Row 6 (equals full width) -->
+        <button data-action="evaluate" class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg py-3 col-span-4 w-full">=</button>
+      </div>
+    </div>
+
+    <!-- History -->
+    <div class="mt-4 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/50 p-3">
+      <div class="flex items-center justify-between">
+        <p class="text-sm font-medium">History</p>
+        <button id="clearHistory" class="text-xs px-2 py-1 border rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 border-slate-300 dark:border-slate-700">Clear</button>
+      </div>
+      <div id="history" class="mt-2 max-h-40 overflow-auto space-y-1 text-sm"></div>
+    </div>
+  </div>
+<script src="script.js"></script>
+  </body>
+</html>
